@@ -1,0 +1,36 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Data
+concentration_glucose = [1.5, 1.5, 1.5, 1.5, 25, 25, 25, 25]
+percent_oxygen = [0, 5, 10, 21, 0, 5, 10, 21]
+relative_atp_concentration = [0.3, 0.65, 0.75, 0.85, 0.4, 0.7, 0.8, 1.0]
+
+# Create subplots
+fig, ax1 = plt.subplots()
+
+# Bar graph for concentration of glucose
+color = 'tab:red'
+ax1.set_xlabel('Conditions')
+ax1.set_ylabel('Concentration of Glucose (mM)', color=color)
+ax1.bar(np.arange(len(concentration_glucose)), concentration_glucose, color=color)
+ax1.tick_params(axis='y', labelcolor=color)
+
+# Create a second y-axis to represent percent of oxygen
+ax2 = ax1.twinx()
+color = 'tab:blue'
+ax2.set_ylabel('Percent of Oxygen', color=color)
+ax2.plot(np.arange(len(percent_oxygen)), percent_oxygen, color=color, marker='o')
+ax2.tick_params(axis='y', labelcolor=color)
+
+# Create a third y-axis to represent relative concentration of ATP per cell
+ax3 = ax1.twinx()
+ax3.spines['right'].set_position(('outward', 60))
+color = 'tab:green'
+ax3.set_ylabel('Relative ATP Concentration per Cell', color=color)
+ax3.plot(np.arange(len(relative_atp_concentration)), relative_atp_concentration, color=color, marker='x')
+ax3.tick_params(axis='y', labelcolor=color)
+
+# Display the plot
+plt.title('Effect of Glucose Concentration, Oxygen Percentage, and ATP Concentration')
+plt.show()
